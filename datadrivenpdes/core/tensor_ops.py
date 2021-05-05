@@ -27,7 +27,7 @@ import tensorflow as tf
 def auto_nest(func):
   """Automatically support nested tensors in the first argument."""
   def wrapper(tensors, *args, **kwargs):
-    return tf.contrib.framework.nest.map_structure(
+    return tf.nest.map_structure(
         lambda x: func(x, *args, **kwargs), tensors)
   return wrapper
 
@@ -185,7 +185,7 @@ def extract_patches_2d(
   padded = pad_periodic(tensor, paddings)
 
   size_x, size_y = kernel_size
-  extracted = tf.extract_image_patches(padded[..., tf.newaxis],
+  extracted = tf.image.extract_patches(padded[..., tf.newaxis],
                                        [1, size_x, size_y, 1],
                                        strides=[1, 1, 1, 1],
                                        rates=[1, 1, 1, 1],

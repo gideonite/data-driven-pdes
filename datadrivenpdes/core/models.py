@@ -35,7 +35,8 @@ from datadrivenpdes.core import tensor_ops
 import tensorflow as tf
 
 
-nest = tf.contrib.framework.nest
+# nest = tf.contrib.framework.nest
+nest = tf.nest
 
 
 T = TypeVar('T')
